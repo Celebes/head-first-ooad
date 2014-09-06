@@ -1,12 +1,16 @@
 package io.github.celebes.headfirst.ooad.guitarshop;
 
+import io.github.celebes.headfirst.ooad.guitarshop.enums.Builder;
+import io.github.celebes.headfirst.ooad.guitarshop.enums.Type;
+import io.github.celebes.headfirst.ooad.guitarshop.enums.Wood;
+
 public class FindGuitarTester {
 	public static void main(String[] args) {
 		Inventory inventory = new Inventory();
 		initializeInventory(inventory);
 
-		Guitar whatErinLikes = new Guitar("", 0, "fender", "Stratocastor",
-				"electric", "Alder", "Alder");
+		Guitar whatErinLikes = new Guitar("", 0, Builder.FENDER,
+				"Stratocastor", Type.ELECTRIC, Wood.ALDER, Wood.ALDER);
 
 		Guitar guitar = inventory.search(whatErinLikes);
 
@@ -23,7 +27,7 @@ public class FindGuitarTester {
 	}
 
 	private static void initializeInventory(Inventory inventory) {
-		inventory.addGuitar("V95693", 1499.95, "Fender", "Stratocastor",
-				"electric", "Alder", "Alder");
+		inventory.addGuitar("V95693", 1499.95, Builder.FENDER, "Stratocastor",
+				Type.ELECTRIC, Wood.ALDER, Wood.ALDER);
 	}
 }
