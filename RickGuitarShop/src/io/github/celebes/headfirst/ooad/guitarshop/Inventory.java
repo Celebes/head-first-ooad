@@ -20,49 +20,49 @@ public class Inventory {
 				backWood, topWood);
 		guitars.add(guitar);
 	}
-	
+
 	public Guitar getGuitar(String serialNumber) {
-		for(Guitar guitar : guitars) {
-			if(guitar.getSerialNumber().equals(serialNumber)) {
+		for (Guitar guitar : guitars) {
+			if (guitar.getSerialNumber().equals(serialNumber)) {
 				return guitar;
 			}
 		}
-		
+
 		return null;
 	}
-	
-	public List<Guitar> search(Guitar searchGuitar) {
-		
+
+	public List<Guitar> search(GuitarSpec searchSpec) {
+
 		List<Guitar> matchingGuitars = new LinkedList<>();
-		
-		for(Guitar guitar : guitars) {
-			// ignoruj numer seryjny, bo jest unikatowy
-			// ignoruj cene, bo jest unikatowa
-			
-			if(searchGuitar.getBuilder() != guitar.getBuilder()) {
+
+		for (Guitar guitar : guitars) {
+			GuitarSpec guitarSpec = guitar.getSpec();
+
+			if (searchSpec.getBuilder() != guitarSpec.getBuilder()) {
 				continue;
 			}
-			
-			String model = searchGuitar.getModel().toLowerCase();
-			if((model != null) && (!model.equals("")) && (!model.equals(guitar.getModel().toLowerCase()))) {
+
+			String model = searchSpec.getModel().toLowerCase();
+			if ((model != null) && (!model.equals(""))
+					&& (!model.equals(guitarSpec.getModel().toLowerCase()))) {
 				continue;
 			}
-			
-			if(searchGuitar.getType() != guitar.getType()) {
+
+			if (searchSpec.getType() != guitarSpec.getType()) {
 				continue;
 			}
-			
-			if(searchGuitar.getBackWood() != guitar.getBackWood()) {
+
+			if (searchSpec.getBackWood() != guitarSpec.getBackWood()) {
 				continue;
 			}
-			
-			if(searchGuitar.getTopWood() != guitar.getTopWood()) {
+
+			if (searchSpec.getTopWood() != guitarSpec.getTopWood()) {
 				continue;
 			}
-			
+
 			matchingGuitars.add(guitar);
 		}
-		
+
 		return matchingGuitars;
 	}
 }
