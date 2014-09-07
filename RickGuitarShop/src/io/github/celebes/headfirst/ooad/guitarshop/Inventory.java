@@ -1,9 +1,5 @@
 package io.github.celebes.headfirst.ooad.guitarshop;
 
-import io.github.celebes.headfirst.ooad.guitarshop.enums.Builder;
-import io.github.celebes.headfirst.ooad.guitarshop.enums.Type;
-import io.github.celebes.headfirst.ooad.guitarshop.enums.Wood;
-
 import java.util.LinkedList;
 import java.util.List;
 
@@ -14,10 +10,8 @@ public class Inventory {
 		guitars = new LinkedList<>();
 	}
 
-	public void addGuitar(String serialNumber, double price, Builder builder,
-			String model, Type type, Wood backWood, Wood topWood) {
-		Guitar guitar = new Guitar(serialNumber, price, builder, model, type,
-				backWood, topWood);
+	public void addGuitar(String serialNumber, double price, GuitarSpec spec) {
+		Guitar guitar = new Guitar(serialNumber, price, spec);
 		guitars.add(guitar);
 	}
 
@@ -36,31 +30,9 @@ public class Inventory {
 		List<Guitar> matchingGuitars = new LinkedList<>();
 
 		for (Guitar guitar : guitars) {
-			GuitarSpec guitarSpec = guitar.getSpec();
-
-			if (searchSpec.getBuilder() != guitarSpec.getBuilder()) {
-				continue;
+			if(guitar.getSpec().equals(searchSpec)) {
+				matchingGuitars.add(guitar);
 			}
-
-			String model = searchSpec.getModel().toLowerCase();
-			if ((model != null) && (!model.equals(""))
-					&& (!model.equals(guitarSpec.getModel().toLowerCase()))) {
-				continue;
-			}
-
-			if (searchSpec.getType() != guitarSpec.getType()) {
-				continue;
-			}
-
-			if (searchSpec.getBackWood() != guitarSpec.getBackWood()) {
-				continue;
-			}
-
-			if (searchSpec.getTopWood() != guitarSpec.getTopWood()) {
-				continue;
-			}
-
-			matchingGuitars.add(guitar);
 		}
 
 		return matchingGuitars;
