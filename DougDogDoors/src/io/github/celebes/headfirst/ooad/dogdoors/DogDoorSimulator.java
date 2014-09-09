@@ -9,12 +9,9 @@ public class DogDoorSimulator {
 		remote.pressButton();
 		
 		System.out.println("\nFido has gone outside...");
-		remote.pressButton();
-		
+
 		System.out.println("\nFido is all done...");
-		remote.pressButton();
 		
 		System.out.println("\nFido is back inside...");
-		remote.pressButton();
 	}
 }
