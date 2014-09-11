@@ -4,7 +4,6 @@ public class DogDoorSimulator {
 	public static void main(String[] args) {
 		DogDoor door = new DogDoor();
 		BarkRecognizer recognizer = new BarkRecognizer(door);
-		Remote remote = new Remote(door);
 		
 		// Simulate the hardware hearing a bark
 		System.out.println("Fido starts barking.");
